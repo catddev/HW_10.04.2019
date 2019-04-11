@@ -95,7 +95,6 @@ bool Fraction::operator==(Fraction obj)
 
 Fraction Fraction::reduct()
 {
-	print();
 	int nod=1;
 	int c = a < b ? a : b;
 	for (int i = c; i > 0; i--) {
@@ -107,7 +106,6 @@ Fraction Fraction::reduct()
 	a /= nod;
 	b /= nod;
 	//if (a == b) return
-	cout << nod << endl;
 	return *this;
 }
 
