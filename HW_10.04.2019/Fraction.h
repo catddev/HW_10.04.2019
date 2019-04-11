@@ -24,7 +24,8 @@ public: // ВСЕГДА ПАБЛИК!!!
 	Fraction operator-(Fraction obj);
 	Fraction operator*(Fraction obj);
 	Fraction operator/(Fraction obj);
+	Fraction operator=(Fraction obj);
 	bool operator==(Fraction obj);
-	//Fraction reduct();
+	Fraction reduct();
 	void print();
 };

@@ -34,7 +34,7 @@ Fraction Fraction::operator+(Fraction obj)
 		tmp.b = b;
 		tmp.a = a + obj.a;
 	}
-	else if (b%obj.b || obj.b%b) {
+	else if (b%obj.b==0 || obj.b%b==0) {
 		tmp.b = b > obj.b ? b : obj.b;
 		tmp.a = b > obj.b ? (a + obj.a*b/obj.b) : (a*obj.b / b + obj.a);
 	}
@@ -52,7 +52,7 @@ Fraction Fraction::operator-(Fraction obj)
 		tmp.b = b;
 		tmp.a = a - obj.a;
 	}
-	else if (b%obj.b || obj.b%b) {
+	else if (b%obj.b==0 || obj.b%b==0) {
 		tmp.b = b > obj.b ? b : obj.b;
 		tmp.a = b > obj.b ? (a - obj.a*b/obj.b) : (a*obj.b / b - obj.a);
 	}
@@ -81,25 +81,35 @@ Fraction Fraction::operator/(Fraction obj)
 	return tmp;
 }
 
+Fraction Fraction::operator=(Fraction obj)
+{
+	this->a = obj.a;
+	this->b = obj.b;
+	return *this;
+}
+
 bool Fraction::operator==(Fraction obj)
 {
 	return((a/b)==(obj.a/obj.b));
 }
 
-//Fraction Fraction::reduct()
-//{
-//	int nod = 1;
-//	int k1 = 0, k2 = 0;
-//	if (a % 2 == 0)
-//	{
-//		a = a / 2;
-//		k1++;
-//	}
-//	else if (a % 2 != 0 && a!=1)
-//
-//
-//	return *this;
-//}
+Fraction Fraction::reduct()
+{
+	print();
+	int nod=1;
+	int c = a < b ? a : b;
+	for (int i = c; i > 0; i--) {
+		if (a % i == 0 && b % i == 0) {
+			nod = i;
+			break;
+		}
+	}
+	a /= nod;
+	b /= nod;
+	//if (a == b) return
+	cout << nod << endl;
+	return *this;
+}
 
 void Fraction::print()
 {

@@ -4,6 +4,7 @@ void menu(Vector v)
 {
 	int x, y;
 	while (true) {
+		Fraction f3;
 		char choice;
 		cout << "Enter 1 to use your own numbers" << endl;
 		cout << "Enter 2 to use array of fractions" << endl;
@@ -11,8 +12,7 @@ void menu(Vector v)
 		cin >> var;
 		if (var == 1) {
 			int a, b, c, d;
-			cout << "Enter 0 to exit" << endl;
-			cout << "OR enter numerator1, denominator1, operation (+, -, *, /), numerator2, denominator2" << endl;
+			cout << "enter numerator1, denominator1, operation (+, -, *, /), numerator2, denominator2" << endl;
 			cin >> a >> b >> choice >> c >> d;
 			cout << "=";
 			Fraction f1(a, b);
@@ -22,16 +22,24 @@ void menu(Vector v)
 			switch (choice)
 			{
 			case '+':
-				(f1 + f2).print();
+				f3=(f1 + f2);
+				f3.reduct();
+				f3.print();
 				break;
 			case '-':
-				(f1 - f2).print();
+				f3 = (f1 - f2);
+				f3.reduct();
+				f3.print();
 				break;
 			case '*':
-				(f1 * f2).print();
+				f3=(f1 * f2);
+				f3.reduct();
+				f3.print();
 				break;
 			case '/':
-				(f1 / f2).print();
+				f3=(f1 / f2);
+				f3.reduct();
+				f3.print();
 				break;
 			case '==':
 				if (f1 == f2) cout << "fractions are equal" << endl;
@@ -39,8 +47,7 @@ void menu(Vector v)
 			}
 		}
 		else if (var == 2) {
-			cout << "Enter 0 to exit" << endl;
-			cout << "OR enter indexes of fractions from the array, then (+, -, *, /)" << endl;
+			cout << "enter indexes of fractions from the array, then (+, -, *, /)" << endl;
 			for (int i = 0; i < v.size(); i++)
 			{
 				cout << i << " - ";
@@ -53,16 +60,24 @@ void menu(Vector v)
 			switch (choice)
 			{
 			case '+':
-				(v[x] + v[y]).print();
+				f3 = (v[x] + v[y]);
+				f3.reduct();
+				f3.print();
 				break;
 			case '-':
-				(v[x] - v[y]).print();
+				f3=(v[x] - v[y]);
+				f3.reduct();
+				f3.print();
 				break;
 			case '*':
-				(v[x] * v[y]).print();
+				f3=(v[x] * v[y]);
+				f3.reduct();
+				f3.print();
 				break;
 			case '/':
-				(v[x] / v[y]).print();
+				f3=(v[x] / v[y]);
+				f3.reduct();
+				f3.print();
 				break;
 			case '==':
 				if (v[x] == v[y]) cout << "fractions are equal" << endl;
