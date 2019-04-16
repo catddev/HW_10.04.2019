@@ -4,18 +4,28 @@ Fraction::Fraction()
 {
 	a = 0;
 	b = 1;//не делить на 0
+	c = 0;
 }
 
 Fraction::Fraction(int a, int b)
 {
 	this->a = a;
 	this->b = b;
+	this->c = 0;
 }
 
-void Fraction::setFraction(int a, int b)
+Fraction::Fraction(int a, int b, int c)
 {
 	this->a = a;
 	this->b = b;
+	this->c = c;
+}
+
+void Fraction::setFraction(int a, int b, int c)
+{
+	this->a = a;
+	this->b = b;
+	this->c = c;
 }
 
 int Fraction::getA()
@@ -25,6 +35,11 @@ int Fraction::getA()
 int Fraction::getB()
 {
 	return b;
+}
+
+int Fraction::getC()
+{
+	return c;
 }
 
 Fraction Fraction::operator+(Fraction obj)
@@ -93,11 +108,16 @@ bool Fraction::operator==(Fraction obj)
 	return((a/b)==(obj.a/obj.b));
 }
 
-Fraction Fraction::reduct()
+Fraction Fraction:: reduct()
 {
+	if (a % b == 0) {
+		c = a / b;
+		a = b = 0;
+		return *this;
+	}
 	int nod=1;
-	int c = a < b ? a : b;
-	for (int i = c; i > 0; i--) {
+	int k = a < b ? a : b;
+	for (int i = k; i > 0; i--) {
 		if (a % i == 0 && b % i == 0) {
 			nod = i;
 			break;
@@ -105,11 +125,14 @@ Fraction Fraction::reduct()
 	}
 	a /= nod;
 	b /= nod;
-	//if (a == b) return
+	
 	return *this;
 }
 
 void Fraction::print()
 {
-	cout << a << "/" << b << endl;
+	if (c != 0) {
+		cout << c << endl;
+	}
+	else cout << a << "/" << b << endl;
 }
